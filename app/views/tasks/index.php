@@ -19,28 +19,40 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <form ng-show="showForm" class="form-horizontal">
+        <form ng-submit="submitTask()" ng-show="showForm" class="form-horizontal">
           <fieldset>
             <!-- Text input-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="title">Title</label>  
               <div class="col-md-4">
-              <input id="title" name="title" placeholder="my task" class="form-control input-md" type="text">
+              <input id="title" name="title" ng-model="taskData.title" class="form-control input-md" type="text">
                 
+              </div>
+            </div>
+            <!-- Select Basic -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="status">Status</label>
+              <div class="col-md-4">
+                <select id="status" ng-model="taskData.status" name="status" class="form-control">
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Fixed">Fixed</option>
+                  <option value="Verified">Verified</option>
+                </select>
               </div>
             </div>
             <!-- Textarea -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="description">Description</label>
               <div class="col-md-4">                     
-                <textarea class="form-control" id="description" name="description"></textarea>
+                <textarea class="form-control" ng-model="taskData.description" id="description" name="description"></textarea>
               </div>
             </div>
             <!-- Button -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="save"></label>
               <div class="col-md-2">
-                <button id="save" name="save" class="btn btn-primary btn-block">Save</button>
+                <button id="save" name="save" type="submit" class="btn btn-primary btn-block">Save</button>
               </div>
               <div class="col-md-2">
                 <button ng-click="showForm = !showForm" id="cancel" name="cancel" class="btn btn-primary btn-block">Cancel</button>

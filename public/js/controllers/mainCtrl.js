@@ -32,8 +32,14 @@ angular.module('mainCtrl', [])
                 // if successful, we'll need to refresh the task list
                 Task.get()
                     .success(function(getData) {
-                        $scope.tasks = getData;
+                        var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
+                        $.each(getData.data, function(index, val) {
+                            var status = val.status.replace(/\s+/gi, '').toLowerCase();
+                            tasksByStatus[status].push(val);
+                        });
+                        $scope.tasks = tasksByStatus;
                         $scope.loading = false;
+                        $scope.showForm = false;
                     });
 
             })
