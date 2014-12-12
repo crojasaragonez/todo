@@ -6,6 +6,7 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
     // loading variable to show the spinning loading icon
     $scope.loading = true;
     $scope.showForm = false;
+    $scope.showError = false;
 
     // get all the tasks and bind them to the $scope.tasks object
     taskService.get(function(data) {
@@ -24,8 +25,12 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
                 $scope.loading = false;
                 $scope.taskData = {};
                 $scope.showForm = false;
+                $scope.showError = false;
         })
-        .error(function(data) {
+        .error(function(response) {
+            $scope.loading = false;
+            $scope.showError = true;
+            $scope.errorMsg = response.errors
             console.log(data);
         });
     };

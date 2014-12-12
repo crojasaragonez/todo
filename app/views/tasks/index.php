@@ -26,8 +26,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="title">Title</label>  
               <div class="col-md-4">
-              <input id="title" name="title" ng-model="taskData.title" class="form-control input-md" type="text">
-                
+                <input id="title" name="title" ng-model="taskData.title" class="form-control input-md" type="text">
               </div>
             </div>
             <!-- Select Basic -->
@@ -53,11 +52,18 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="save"></label>
               <div class="col-md-2">
-                <button id="save" name="save" type="submit" class="btn btn-primary btn-block">Save</button>
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
               </div>
               <div class="col-md-2">
-                <button ng-click="showForm = !showForm" id="cancel" name="cancel" class="btn btn-primary btn-block">Cancel</button>
+                <button ng-click="showForm = !showForm" type="button" class="btn btn-primary btn-block">Cancel</button>
               </div>
+            </div>
+            <div ng-show="showError" role="alert" class="alert alert-danger alert-dismissible fade in">
+              <button data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              <strong>Error!</strong></br>
+              {{errorMsg.title ? errorMsg.title[0] : ""}}
+              {{errorMsg.status ? errorMsg.status[0] : ""}}
+              {{errorMsg.description ? errorMsg.description[0] : ""}}
             </div>
           </fieldset>
         </form>
