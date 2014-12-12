@@ -1,11 +1,20 @@
 'use strict';
-angular.module('taskService', [])
+angular.module('todoApp')
+.factory('taskService', ['$http', function($http) {
 
-.factory('Task', function($http) {
+    function tasksByStatus (data) {
+        var tasksByStatus = {Open:[], 'In Progress':[], Fixed:[], Verified:[]}
+        $.each(data.data, function(index, val) {
+            tasksByStatus[val.status].push(val);
+        });
+        return tasksByStatus;
+    }
 
     return {
-        get: function() {
-            return $http.get('api/v1/tasks');
+        get: function(callback) {
+            return $http.get('api/v1/tasks').then(function (response) {
+                callback(tasksByStatus(response.data));
+            });
         },
         show: function(id) {
             return $http.get('api/v1/tasks/' + id);
@@ -25,4 +34,4 @@ angular.module('taskService', [])
         }
     };
 
-});
+}]);

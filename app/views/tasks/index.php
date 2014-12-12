@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="css/style.css"></style>
   <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/controllers/mainCtrl.js"></script>
   <script type="text/javascript" src="js/services/taskService.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body ng-app="todoApp" ng-controller="mainController">
@@ -73,11 +73,11 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Open</strong></div>
           <div id="open" class="task-bucket panel-body">
-            <div class="task" ng-hide="loading" ng-repeat="task in tasks.open">
+            <div class="task" ng-hide="loading" ng-repeat="task in tasks.Open">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
                 <p>{{ task.description }}</p>
-                <p><a href="#" ng-click="deleteTask(task.id)" class="text-muted">Delete</a></p>
+                <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
             </div>
           </div>
@@ -87,11 +87,11 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>In Progress</strong></div>
           <div id="in_progress" class="task-bucket panel-body">
-            <div class="task" ng-hide="loading" ng-repeat="task in tasks.inprogress">
+            <div class="task" ng-hide="loading" ng-repeat="task in tasks['In Progress']">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
                 <p>{{ task.description }}</p>
-                <p><a href="#" ng-click="deleteTask(task.id)" class="text-muted">Delete</a></p>
+                <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
             </div>
           </div>
@@ -101,11 +101,11 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Fixed</strong></div>
           <div id="fixed" class="task-bucket panel-body">
-            <div class="task" ng-hide="loading" ng-repeat="task in tasks.fixed">
+            <div class="task" ng-hide="loading" ng-repeat="task in tasks.Fixed">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
                 <p>{{ task.description }}</p>
-                <p><a href="#" ng-click="deleteTask(task.id)" class="text-muted">Delete</a></p>
+                <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
             </div>
           </div>
@@ -115,11 +115,11 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Verified</strong></div>
           <div id="verified" class="task-bucket panel-body">
-            <div class="task" ng-hide="loading" ng-repeat="task in tasks.verified">
+            <div class="task" ng-hide="loading" ng-repeat="task in tasks.Verified">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
                 <p>{{ task.description }}</p>
-                <p><a href="#" ng-click="deleteTask(task.id)" class="text-muted">Delete</a></p>
+                <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
             </div>
           </div>

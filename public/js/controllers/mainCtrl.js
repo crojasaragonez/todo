@@ -1,7 +1,5 @@
 'use strict';
-angular.module('mainCtrl', [])
-
-.controller('mainController', function($scope, $http, Task) {
+angular.module('todoApp').controller('mainController', ['$scope','taskService', function($scope, taskService) {
     // object to hold all the data for the new task form
     $scope.taskData = {};
 
@@ -10,13 +8,8 @@ angular.module('mainCtrl', [])
     $scope.showForm = false;
 
     // get all the tasks and bind them to the $scope.tasks object
-    Task.get().success(function(data) {
-            var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
-            $.each(data.data, function(index, val) {
-                var status = val.status.replace(/\s+/gi, '').toLowerCase();
-                tasksByStatus[status].push(val);
-            });
-            $scope.tasks = tasksByStatus;
+    taskService.get(function(data) {
+            $scope.tasks = data;
             $scope.loading = false;
         });
 
@@ -26,22 +19,15 @@ angular.module('mainCtrl', [])
         $scope.loading = true;
 
         // save the task. pass in task data from the form
-        Task.save($scope.taskData)
+        taskService.save($scope.taskData)
             .success(function(data) {
                 $scope.taskData = {};
                 // if successful, we'll need to refresh the task list
-                Task.get()
-                    .success(function(getData) {
-                        var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
-                        $.each(getData.data, function(index, val) {
-                            var status = val.status.replace(/\s+/gi, '').toLowerCase();
-                            tasksByStatus[status].push(val);
-                        });
-                        $scope.tasks = tasksByStatus;
-                        $scope.loading = false;
-                        $scope.showForm = false;
-                    });
-
+                taskService.get(function(data) {
+            $scope.tasks = data;
+            $scope.loading = false;
+            $scope.showForm = false;
+        });
             })
             .error(function(data) {
                 console.log(data);
@@ -49,22 +35,18 @@ angular.module('mainCtrl', [])
     };
 
     // function to handle deleting a task
-    $scope.deleteTask = function(id) {
+    $scope.deleteTask = function(id, status) {
         $scope.loading = true;
-        Task.destroy(id)
+        taskService.destroy(id)
             .success(function(data) {
-                // if successful, we'll need to refresh the tasks list
-                Task.get().success(function(getData) {
-                        var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
-                        $.each(getData.data, function(index, val) {
-                            var status = val.status.replace(/\s+/gi, '').toLowerCase();
-                            tasksByStatus[status].push(val);
-                        });
-                        $scope.tasks = tasksByStatus;
+                $scope.tasks[status].forEach(function (task, index) {
+                    if(task.id === id) {
+                        $scope.tasks[status].splice(index, 1);
                         $scope.loading = false;
-                    });
-
+                        return;
+                    }
+                });
             });
     };
 
-});
+}]);
