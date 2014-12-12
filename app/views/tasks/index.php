@@ -17,6 +17,7 @@
   <div class="container">
     <div class="jumbotron">
       <h1 class="text-center">Todo App</h1>
+      <h3 class="text-center">@crojasaragonez</h3>
     </div>
     <div class="row">
       <div class="col-md-12">
