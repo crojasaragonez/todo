@@ -86,7 +86,7 @@
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>In Progress</strong></div>
-          <div id="in_progress" class="task-bucket panel-body">
+          <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks['In Progress']">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
@@ -100,7 +100,7 @@
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Fixed</strong></div>
-          <div id="fixed" class="task-bucket panel-body">
+          <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks.Fixed">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
@@ -114,7 +114,7 @@
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Verified</strong></div>
-          <div id="verified" class="task-bucket panel-body">
+          <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks.Verified">
               <div class="well text-center">
                 <h3>Task #{{ task.id }}</h3>
