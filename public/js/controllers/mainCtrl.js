@@ -31,7 +31,6 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
             $scope.loading = false;
             $scope.showError = true;
             $scope.errorMsg = response.errors
-            console.log(data);
         });
     };
 

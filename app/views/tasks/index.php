@@ -55,7 +55,7 @@
                 <button type="submit" class="btn btn-primary btn-block">Save</button>
               </div>
               <div class="col-md-2">
-                <button ng-click="showForm = !showForm" type="button" class="btn btn-primary btn-block">Cancel</button>
+                <button ng-click="showForm = !showForm; showError = !showError" type="button" class="btn btn-primary btn-block">Cancel</button>
               </div>
             </div>
             <div ng-show="showError" role="alert" class="alert alert-danger alert-dismissible fade in">
