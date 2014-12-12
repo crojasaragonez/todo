@@ -18,6 +18,45 @@
       <h1 class="text-center">Todo App</h1>
     </div>
     <div class="row">
+      <div class="col-md-12">
+        <form ng-show="showForm" class="form-horizontal">
+          <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="title">Title</label>  
+              <div class="col-md-4">
+              <input id="title" name="title" placeholder="my task" class="form-control input-md" type="text">
+                
+              </div>
+            </div>
+            <!-- Textarea -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="description">Description</label>
+              <div class="col-md-4">                     
+                <textarea class="form-control" id="description" name="description"></textarea>
+              </div>
+            </div>
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="save"></label>
+              <div class="col-md-2">
+                <button id="save" name="save" class="btn btn-primary btn-block">Save</button>
+              </div>
+              <div class="col-md-2">
+                <button ng-click="showForm = !showForm" id="cancel" name="cancel" class="btn btn-primary btn-block">Cancel</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button ng-click="showForm = !showForm" class="btn btn-default btn-lg btn-block" id="session_clear">Create Task</button>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
       <div class="col-md-3">
         <div class="panel panel-default">
           <div class="panel-heading text-center"><strong>Open</strong></div>

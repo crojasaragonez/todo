@@ -7,6 +7,7 @@ angular.module('mainCtrl', [])
 
     // loading variable to show the spinning loading icon
     $scope.loading = true;
+    $scope.showForm = false;
 
     // get all the tasks and bind them to the $scope.tasks object
     Task.get().success(function(data) {
