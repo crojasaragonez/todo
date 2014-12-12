@@ -2,6 +2,12 @@
 
 class TasksController extends \BaseController {
 
+	protected $task;
+
+	function __construct(Task $task) {
+        $this->task = $task;
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,20 +15,9 @@ class TasksController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$tasks = $this->task->all();
+		return $this->response($tasks, self::OK);
 	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -31,9 +26,25 @@ class TasksController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+		$rules = array(
+			'title' => 'required',
+			'description' => 'required',
+			'status' => 'in:Open,In Progress,Fixed,Verified',
+			'status' => 'required',
+		);
 
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails())
+			return $this->error($validator->messages(), self::BAD_REQUEST);
+
+		$task = new $this->task;
+		$task->title = Input::get('title');
+		$task->description = Input::get('description');
+		$task->status = Input::get('status');
+		$task->save();
+		return $this->response($task, self::CREATED);
+
+	}
 
 	/**
 	 * Display the specified resource.
@@ -43,21 +54,9 @@ class TasksController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$task = $this->task->find($id);
+		return $task ? $this->response($task, self::OK) : $this->error('resource not found', self::NOT_FOUND);
 	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -67,7 +66,26 @@ class TasksController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$task = $this->task->find($id);
+		if (!$task)
+			return $this->error('resource not found', self::NOT_FOUND);
+
+		if (Input::has('title'))
+			$task->title = Input::get('title');
+		if (Input::has('description'))
+			$task->description = Input::get('description');
+		if (Input::has('status')){
+			$rules = array(
+				'status' => 'in:Open,In Progress,Fixed,Verified',
+			);
+			$validator = Validator::make(Input::all(), $rules);
+			if ($validator->fails())
+				return $this->error($validator->messages(), self::BAD_REQUEST);
+			$task->status = Input::get('status');
+		}
+		$task->save();
+		return $this->response($task, self::OK);
+
 	}
 
 
@@ -79,8 +97,11 @@ class TasksController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$task = $this->task->find($id);
+		if (!$task)
+			return $this->error('resource not found', self::NOT_FOUND);
+		$task->delete();
+		return $this->response($task, self::NO_CONTENT);
 	}
-
 
 }
