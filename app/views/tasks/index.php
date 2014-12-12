@@ -75,7 +75,7 @@
           <div id="open" class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks.Open">
               <div class="well text-center">
-                <h3>Task #{{ task.id }}</h3>
+                <h3>{{ task.title }}</h3>
                 <p>{{ task.description }}</p>
                 <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
@@ -89,7 +89,7 @@
           <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks['In Progress']">
               <div class="well text-center">
-                <h3>Task #{{ task.id }}</h3>
+                <h3>{{ task.title }}</h3>
                 <p>{{ task.description }}</p>
                 <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
@@ -103,7 +103,7 @@
           <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks.Fixed">
               <div class="well text-center">
-                <h3>Task #{{ task.id }}</h3>
+                <h3>{{ task.title }}</h3>
                 <p>{{ task.description }}</p>
                 <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>
@@ -117,7 +117,7 @@
           <div class="task-bucket panel-body">
             <div class="task" ng-hide="loading" ng-repeat="task in tasks.Verified">
               <div class="well text-center">
-                <h3>Task #{{ task.id }}</h3>
+                <h3>{{ task.title }}</h3>
                 <p>{{ task.description }}</p>
                 <p><a href="#" ng-click="deleteTask(task.id, task.status)" class="text-muted">Delete</a></p>
               </div>

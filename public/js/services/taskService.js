@@ -4,9 +4,12 @@ angular.module('todoApp')
 
     function tasksByStatus (data) {
         var tasksByStatus = {Open:[], 'In Progress':[], Fixed:[], Verified:[]}
-        $.each(data.data, function(index, val) {
+        data.data.forEach(function (val, index) {
             tasksByStatus[val.status].push(val);
         });
+        /*$.each(data.data, function(index, val) {
+            tasksByStatus[val.status].push(val);
+        });*/
         return tasksByStatus;
     }
 
