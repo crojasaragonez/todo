@@ -22,6 +22,7 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
         taskService.save($scope.taskData).success(function(response) {
                 $scope.tasks[response.data.status].push(response.data);
                 $scope.loading = false;
+                $scope.taskData = {};
                 $scope.showForm = false;
         })
         .error(function(data) {
@@ -42,5 +43,16 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
             });
         });
     };
+
+    $scope.onDropComplete = function (data, event, newStatus) {
+        $scope.loading = true;
+        data.status = newStatus;
+        taskService.put(data).success(function (data) {
+            taskService.get(function(data) {
+                $scope.tasks = data;
+                $scope.loading = false;
+            });
+        })
+    }
 
 }]);

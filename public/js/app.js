@@ -1,2 +1,2 @@
 'use strict';
-var todoApp = angular.module('todoApp', []);
+var todoApp = angular.module('todoApp', ['ngDraggable']);

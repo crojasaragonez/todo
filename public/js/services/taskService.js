@@ -32,6 +32,16 @@ angular.module('todoApp')
                 data: $.param(taskData)
             });
         },
+        put: function (taskData) {
+            return $http({
+                method: 'PUT',
+                url: 'api/v1/tasks/' + taskData.id,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: $.param(taskData)
+            });  
+        },
         destroy: function(id) {
             return $http.delete('api/v1/tasks/' + id);
         }
