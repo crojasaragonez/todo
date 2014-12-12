@@ -9,9 +9,13 @@ angular.module('mainCtrl', [])
     $scope.loading = true;
 
     // get all the tasks and bind them to the $scope.tasks object
-    Task.get()
-        .success(function(data) {
-            $scope.tasks = data;
+    Task.get().success(function(data) {
+            var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
+            $.each(data.data, function(index, val) {
+                var status = val.status.replace(/\s+/gi, '').toLowerCase();
+                tasksByStatus[status].push(val);
+            });
+            $scope.tasks = tasksByStatus;
             $scope.loading = false;
         });
 
@@ -40,14 +44,16 @@ angular.module('mainCtrl', [])
     // function to handle deleting a task
     $scope.deleteTask = function(id) {
         $scope.loading = true;
-
         Task.destroy(id)
             .success(function(data) {
-
                 // if successful, we'll need to refresh the tasks list
-                Task.get()
-                    .success(function(getData) {
-                        $scope.tasks = getData;
+                Task.get().success(function(getData) {
+                        var tasksByStatus = {open:[], inprogress:[], fixed:[], verified:[]}
+                        $.each(getData.data, function(index, val) {
+                            var status = val.status.replace(/\s+/gi, '').toLowerCase();
+                            tasksByStatus[status].push(val);
+                        });
+                        $scope.tasks = tasksByStatus;
                         $scope.loading = false;
                     });
 
