@@ -20,14 +20,10 @@ angular.module('todoApp').controller('mainController', ['$scope','taskService', 
 
         // save the task. pass in task data from the form
         taskService.save($scope.taskData)
-            .success(function(data) {
-                $scope.taskData = {};
-                // if successful, we'll need to refresh the task list
-                taskService.get(function(data) {
-            $scope.tasks = data;
-            $scope.loading = false;
-            $scope.showForm = false;
-        });
+            .success(function(response) {
+                $scope.tasks[response.data.status].push(response.data);
+                $scope.loading = false;
+                $scope.showForm = false;
             })
             .error(function(data) {
                 console.log(data);
