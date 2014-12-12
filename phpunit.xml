@@ -15,4 +15,14 @@
             <directory>./app/tests/</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./app/controllers/</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="./reports" charset="UTF-8"
+            yui="true" highlight="true"
+            lowUpperBound="50" highLowerBound="80"/>
+    </logging>
 </phpunit>

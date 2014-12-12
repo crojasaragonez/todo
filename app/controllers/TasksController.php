@@ -29,19 +29,20 @@ class TasksController extends \BaseController {
 		$rules = array(
 			'title' => 'required',
 			'description' => 'required',
-			'status' => 'in:Open,In Progress,Fixed,Verified',
-			'status' => 'required',
+			'status' => 'required|in:Open,In Progress,Fixed,Verified'
 		);
 
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->fails())
 			return $this->error($validator->messages(), self::BAD_REQUEST);
 
-		$task = new $this->task;
-		$task->title = Input::get('title');
-		$task->description = Input::get('description');
-		$task->status = Input::get('status');
-		$task->save();
+		$task = $this->task->create(
+			array(
+				'title' => Input::get('title'),
+				'description' => Input::get('description'),
+				'status' => Input::get('status')
+			)
+		);
 		return $this->response($task, self::CREATED);
 
 	}
