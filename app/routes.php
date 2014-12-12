@@ -13,7 +13,7 @@
 
 Route::group(array('prefix' => 'api/v1'), function()
 {
-    Route::resource('tasks', 'TasksController');
+    Route::resource('tasks', 'TasksController', ['except' => ['edit', 'create']]);
 });
 
 Route::get('/', function()
