@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Todo app</title>
-  <meta charset="UTF-8"> 
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></style>
   <link rel="stylesheet" href="css/style.css"></style>
   <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
@@ -25,7 +25,7 @@
           <fieldset>
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="title">Title</label>  
+              <label class="col-md-4 control-label" for="title">Title</label>
               <div class="col-md-4">
                 <input id="title" name="title" ng-model="taskData.title" class="form-control input-md" type="text">
               </div>
@@ -45,7 +45,7 @@
             <!-- Textarea -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="description">Description</label>
-              <div class="col-md-4">                     
+              <div class="col-md-4">
                 <textarea class="form-control" ng-model="taskData.description" id="description" name="description"></textarea>
               </div>
             </div>
@@ -56,7 +56,7 @@
                 <button type="submit" class="btn btn-primary btn-block">Save</button>
               </div>
               <div class="col-md-2">
-                <button ng-click="showForm = !showForm; showError = !showError" type="button" class="btn btn-primary btn-block">Cancel</button>
+                <button ng-click="showForm = !showForm; showError = false" type="button" class="btn btn-primary btn-block">Cancel</button>
               </div>
             </div>
             <div ng-show="showError" role="alert" class="alert alert-danger alert-dismissible fade in">
