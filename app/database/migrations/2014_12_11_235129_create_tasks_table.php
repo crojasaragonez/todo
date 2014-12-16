@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration {
             $table->increments('id');
             $table->string('title', 100);
             $table->text('description');
-            $table->string('status', 30);
+            $table->enum('status', array('Open','In Progress','Fixed','Verified'));
         });
 	}
 
