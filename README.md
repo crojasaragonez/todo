@@ -14,3 +14,13 @@ Todo list app with angular and laravel
 ### Running unit tests
 * Run **phpunit**
 * Make sure to check code coverage reports on the reports directory
+
+### Screenshots
+
+#### Main View
+![Main view](https://raw.githubusercontent.com/crojasaragonez/todo/master/screenshots/view.png "Main View")
+#### Unit Tests
+![Main view](https://raw.githubusercontent.com/crojasaragonez/todo/master/screenshots/unit_tests.png "Unit tests")
+#### Code Coverage
+![Code Coverage](https://raw.githubusercontent.com/crojasaragonez/todo/master/screenshots/code_coverage.png "Code Coverage")
+
