@@ -1,7 +1,7 @@
 todo
 ====
 
-Todo list app with angular and laravel
+Todo list app
 
 ### Running the app
 * Clone the repository
